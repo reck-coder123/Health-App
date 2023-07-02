@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Health Report Form</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+  <style>
+    /* CSS styling for the form */
+    .form-container {
+      width: 300px;
+      margin: 0 auto;
+    }
+
+    .form-container label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .form-container input[type="text"],
+    .form-container input[type="number"],
+    .form-container input[type="email"],
+    .form-container input[type="file"],
+    .form-container input[type="submit"] {
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+  </style>
+  <link rel="stylesheet" href="./style/style.css">
+</head>
+<body>
+  <div class="form-container">
+    <form id="healthReportForm" action="insert.php" method="POST" enctype="multipart/form-data">
+        <div class="input-container ic1">
+
+            <input class="input" type="text" id="name" placeholder=" " name="name" required>
+            <div class="cut"></div>
+            <label class="placeholder" for="name">Name</label>
+        </div>
+      
+        <div class="input-container ic2">
+            <input type="number" class="input" placeholder=" " id="age" name="age" required>
+            <div class="cut"></div>
+            <label class="placeholder" for="age">Age</label>
+        </div>
+
+        <div class="input-container ic2">
+            <input type="number" class="input" placeholder=" " id="weight" name="weight" required>
+            <div class="cut"></div>
+            <label class="placeholder" for="weight">Weight</label>
+        </div>
+
+        <div class="input-container ic2">
+            <input id="email" class="input" name="email" type="email" placeholder=" " required/>
+            <div class="cut cut-short"></div>
+            <label for="email" class="placeholder">Email</>
+          </div>
+        
+
+          <div class="mb-3" style="color: white;">
+            <label for="formFile" class="form-label">Upload Health Report:</label>
+            <input class="form-control" type="file" id="report" name="report" required accept=".pdf">
+          </div>
+      
+
+      <input type="submit" class="submit" value="Submit">
+    </form>
+  </div>
+<script src="./script/script.js"></script>
+  <script>
+    // JavaScript code to handle form submission
+    document.getElementById('healthReportForm').addEventListener('submit', function(e) {
+      e.preventDefault(); // Prevent form from submitting
+
+      var form = e.target;
+      var formData = new FormData(form);
+
+      // Send the form data using AJAX or fetch API to the PHP file for insertion
+      // Example using fetch API:
+      fetch(form.action, {
+        method: form.method,
+        body: formData
+      })
+      .then(response => response.text())
+      .then(data => {
+        alert(data); // Display the response message
+        form.reset(); // Clear the form
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    });
+  </script>
+</body>
+</html>
+
+
